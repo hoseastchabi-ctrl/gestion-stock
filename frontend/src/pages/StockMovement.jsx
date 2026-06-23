@@ -33,28 +33,30 @@ useEffect(() => {
     .catch(() => setRecent([]))
 }, [selected])
 
-  useEffect(() => {
-    if (!selected) return
-    getRecentMovements(selected.id).then((data) => setRecent(data.data ?? data)).catch(() => setRecent([]))
-  }, [selected])
+useEffect(() => {
+  if (!selected) return
+  getProductMovements(selected.id)
+    .then((data) => setRecent((data.data ?? data).slice(0, 5)))
+    .catch(() => setRecent([]))
+}, [selected])
 
-  function selectProduct(p) {
-    setSelected(p)
-    setQuery(`${p.name} — ${p.sku}`)
-    setShowResults(false)
-  }
+ function selectProduct(p) {
+  setSelected(p)
+  setQuery(`${p.name} — ${p.reference}`)
+  setShowResults(false)
+}
 
 async function handleSubmit(e) {
   e.preventDefault()
   if (!selected) return
   setSubmitting(true)
   try {
-    await createMovement({
-      product_id: selected.id,
-      type: type === 'in' ? 'IN' : 'OUT',
-      quantity: Number(quantity),
-      reason,
-    })
+await createMovement({
+  product_id: selected.id,
+  type: type === 'in' ? 'IN' : 'OUT',
+  quantity: Number(quantity),
+  reason,
+})
     setToast(true)
     setTimeout(() => setToast(false), 3000)
     setQuantity(1)
@@ -114,10 +116,9 @@ async function handleSubmit(e) {
                       >
                         <div>
                           <p className="text-primary">{p.name}</p>
-                          <p className="text-xs text-on-surface-variant">SKU: {p.sku}</p>
+                          <p className="text-xs text-on-surface-variant">Réf: {p.reference}</p>
                         </div>
-                        <span className={`text-xs font-semibold ${p.quantity <= (p.stock_alert_threshold ?? 5) ? 'text-error' : 'text-secondary'}`}>
-                          Stock: {p.quantity}
+<span className={`text-xs font-semibold ${p.quantity <= 5 ? 'text-error' : 'text-secondary'}`}>                          Stock: {p.quantity}
                         </span>
                       </div>
                     ))}

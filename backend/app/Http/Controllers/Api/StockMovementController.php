@@ -25,18 +25,18 @@ class StockMovementController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'type'       => 'required|in:in,out',
-            'quantity'   => 'required|integer|min:1',
-            'reason'     => 'nullable|string|max:255',
-        ]);
+     $validated = $request->validate([
+    'product_id' => 'required|exists:products,id',
+    'type'       => 'required|in:IN,OUT',
+    'quantity'   => 'required|integer|min:1',
+    'reason'     => 'nullable|string|max:255',
+]);
 
         // Utilisation d'une transaction DB pour s'assurer que le mouvement ET la mise à jour du stock réussissent ensemble
         $movement = DB::transaction(function () use ($validated, $request) {
             $product = Product::lockForUpdate()->find($validated['product_id']);
 
-            if ($validated['type'] === 'in') {
+            if ($validated['type'] === 'IN') {
                 // Entrée : on augmente le stock
                 $product->quantity += $validated['quantity'];
             } else {

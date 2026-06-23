@@ -13,10 +13,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     getDashboard()
-      .then((res) => {
-        setData(res.data)
-        setLoading(false)
-      })
+  .then((res) => {
+  setData(res)
+  setLoading(false)
+})
       .catch((err) => {
         console.error("Erreur lors du chargement du dashboard", err)
         setLoading(false)
@@ -55,8 +55,9 @@ export default function Dashboard() {
           <div>
             <p className="text-xs text-on-surface-variant font-bold uppercase tracking-wider">Valeur Stock</p>
             <h3 className="text-xl font-black text-primary mt-1">
-              {data?.stats?.total_value ? `${data.stats.total_value.toLocaleString()} FCFA` : '0 FCFA'}
-            </h3>
+{data?.stats?.total_value
+  ? `${Number(data.stats.total_value).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} FCFA`
+  : '0 FCFA'}            </h3>
           </div>
           <div className="p-3 bg-secondary-container text-on-secondary-container rounded-xl"><Banknote size={22} /></div>
         </div>

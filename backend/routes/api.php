@@ -5,7 +5,9 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StockMovementController;
+use App\Http\Controllers\Api\DashboardController;
 
+Route::get('/dashboard', [DashboardController::class, 'index']);
 // --- ROUTES PUBLIQUES (Accessibles sans être connecté) ---
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);

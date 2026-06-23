@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMe - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "outline": "#75777d",
+                      "surface-bright": "#f7f9fb",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary-fixed": "#d3e4fe",
+                      "inverse-surface": "#2d3133",
+                      "surface": "#f7f9fb",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-high": "#e6e8ea",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#eceef0",
+                      "primary": "#091426",
+                      "outline-variant": "#c5c6cd",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "surface-container-low": "#f2f4f6",
+                      "tertiary-container": "#1a2a3e",
+                      "secondary": "#0058be",
+                      "on-background": "#191c1e",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-container": "#2170e4",
+                      "on-surface-variant": "#45474c",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-primary-fixed": "#111c2d",
+                      "primary-fixed": "#d8e3fb",
+                      "on-secondary-fixed": "#001a42",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#8191a9",
+                      "surface-container-highest": "#e0e3e5",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#bcc7de",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-surface": "#191c1e",
+                      "on-secondary-container": "#fefcff",
+                      "surface-tint": "#545f73",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#bcc7de",
+                      "primary-container": "#1e293b",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "on-primary-container": "#8590a6",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "tertiary": "#041528"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "gutter": "16px",
+                      "margin-desktop": "32px",
+                      "stack-sm": "8px",
+                      "stack-lg": "24px",
+                      "touch-target": "48px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "stats-numeric": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "stats-numeric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: 256px;
+                padding-top: 64px;
+                padding-bottom: 32px;
+            }
+        }
+        @media (max-width: 767px) {
+            .main-content {
+                padding-top: 64px;
+                padding-bottom: 80px;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-touch-target bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-size: 24px;">inventory_2</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold">StockMe</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-6 mr-6">
+<a class="text-secondary dark:text-secondary-fixed font-bold font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="#">Catalog</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="#">Movement</a>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a warehouse administrator, middle-aged with a confident smile, wearing a modern corporate lanyard. The lighting is soft and studio-quality, emphasizing a professional and reliable personality within a high-performance logistics environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV57UdqOIxdInMCLIesWrTz-peS9U1Zuf5nCyz5pcFEH_g4EMapZeqt41wLmDr61vJL6srNwoqTz676cS5SEL60-XjpQzq5nD8R1weBr6lK29Kf29nqrh_YReeG0fEWK2eIB9PC_JYy8wxBGKQY43mC2aR0Pntd5-obuwM7EaEGh_yRehngHtCKydEx27JMKwajPlqwhba02913O-zVStuoISkgI2B7qgbiS1tWpB5u2TcMiwfpr44kRuLbKbkjynBr4xkxux39A"/>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden md:flex flex-col h-full w-64 fixed left-0 top-0 py-stack-lg bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline z-40 mt-[48px]">
+<div class="px-6 mb-8 mt-4">
+<p class="font-headline-md text-primary font-bold">Warehouse Admin</p>
+<p class="text-on-surface-variant font-body-sm text-body-sm">StockMe PWA</p>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-4 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full mx-2 px-4 py-3 cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-lg text-body-lg font-semibold">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer rounded-full">
+<span class="material-symbols-outlined">inventory</span>
+<span class="font-body-lg text-body-lg">Catalog</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer rounded-full">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-body-lg text-body-lg">Stock Movement</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer rounded-full">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-lg text-body-lg">History</span>
+</div>
+</nav>
+<div class="mt-auto px-6">
+<p class="text-on-surface-variant opacity-50 text-[10px]">v1.0.4 • STOCKME CORE</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="main-content min-h-screen px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Welcome Message -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Bonjour, Warehouse Admin</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Voici l'état actuel de votre inventaire aujourd'hui.</p>
+</section>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md text-label-md">PRODUITS EN STOCK</span>
+<span class="material-symbols-outlined text-secondary">inventory_2</span>
+</div>
+<div>
+<p class="font-stats-numeric text-stats-numeric text-primary">1,284</p>
+<p class="text-[10px] text-green-600 font-bold flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12% ce mois
+                    </p>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md text-label-md">VALEUR DU STOCK</span>
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+<div>
+<p class="font-stats-numeric text-stats-numeric text-primary">€ 45,290.00</p>
+<p class="text-[10px] text-on-surface-variant font-bold mt-1">Dernière mise à jour: il y a 2h</p>
+</div>
+</div>
+<!-- Metric Card 3 (Weekly Flows) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm flex flex-col h-32 relative overflow-hidden">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant font-label-md text-label-md">FLUX DE LA SEMAINE</span>
+<div class="flex gap-4">
+<div class="flex items-center gap-1 text-[10px] font-bold"><div class="w-2 h-2 bg-secondary rounded-full"></div> Entrées</div>
+<div class="flex items-center gap-1 text-[10px] font-bold"><div class="w-2 h-2 bg-tertiary-container rounded-full"></div> Sorties</div>
+</div>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 px-2">
+<!-- Simple Bar Chart Visualization -->
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="w-full flex gap-1 items-end h-12">
+<div class="bg-secondary w-1/2 rounded-t-sm" style="height: 60%"></div>
+<div class="bg-tertiary-container w-1/2 rounded-t-sm" style="height: 40%"></div>
+</div>
+<span class="text-[8px] font-bold text-outline">LUN</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="w-full flex gap-1 items-end h-12">
+<div class="bg-secondary w-1/2 rounded-t-sm" style="height: 80%"></div>
+<div class="bg-tertiary-container w-1/2 rounded-t-sm" style="height: 30%"></div>
+</div>
+<span class="text-[8px] font-bold text-outline">MAR</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="w-full flex gap-1 items-end h-12">
+<div class="bg-secondary w-1/2 rounded-t-sm" style="height: 45%"></div>
+<div class="bg-tertiary-container w-1/2 rounded-t-sm" style="height: 90%"></div>
+</div>
+<span class="text-[8px] font-bold text-outline">MER</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="w-full flex gap-1 items-end h-12">
+<div class="bg-secondary w-1/2 rounded-t-sm" style="height: 70%"></div>
+<div class="bg-tertiary-container w-1/2 rounded-t-sm" style="height: 55%"></div>
+</div>
+<span class="text-[8px] font-bold text-outline">JEU</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="w-full flex gap-1 items-end h-12">
+<div class="bg-secondary w-1/2 rounded-t-sm" style="height: 30%"></div>
+<div class="bg-tertiary-container w-1/2 rounded-t-sm" style="height: 20%"></div>
+</div>
+<span class="text-[8px] font-bold text-outline">VEN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Zone d'Alerte -->
+<section class="lg:col-span-2">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-error">warning</span> Zone d'Alerte
+                    </h3>
+<button class="text-secondary font-label-md text-label-md hover:underline">Voir tout</button>
+</div>
+<div class="space-y-stack-sm">
+<!-- Critical Item 1 -->
+<div class="bg-white border-l-4 border-error p-stack-md rounded-lg shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up macro photography of high-quality industrial ball bearings, metallic and reflective. The image is clean and bright, reflecting a professional warehouse environment with a focused depth of field on a single unit. Corporate indigo and silver color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXWV6NShKEtlE48epVxEqHL7kA9eYtAL8bJlnYca26XlehHzftSQfd_malDNkeA58V7b657VANxscE1-EPkDlrqswMiCF8W-14bD4wxsvHkcOoQ2wFK_s24RTtT4gy_4sHt4XM8DYpSkpZyGRMvSyW8to3VwYm6rGFDBP32ciTdzzGf9dEkVM3aQsng9kVAm3riCdkvs1JmqO7BHjcmnlO4ORqnvl7ab_HK0XeXOi7gelCx91RiEmUS_TMKJscJD55vBo2-R0j6Q"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Roulements à billes SKF</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Réf: SKF-00129</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-block bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold mb-1">Quantité critique</span>
+<p class="text-error font-stats-numeric text-xl">2 <span class="text-sm font-label-md uppercase">unités</span></p>
+</div>
+</div>
+<!-- Critical Item 2 -->
+<div class="bg-white border-l-4 border-error p-stack-md rounded-lg shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A spool of thick industrial-grade electrical copper cable, coiled neatly. The lighting is crisp and overhead, highlighting the metallic texture and professional packaging. The setting is a clean, organized logistics bay with neutral gray tones and high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFwm3sEYwSj3rxIO7UBTyG7qnkx3SH45zIeil1YJWKWivqUeM6sQ0MJr9brkciADfGiZi44LMGtNZdiVGTHg6XJDujAVQBe_p2bAjjO3lZlm3ZK3RSmHIQh19an8loQXDzrclz0juxDBXjtfpuyDJD9uip-RX3hVpTEy06Cp7mENOwUbRihzHFHnLm1BEP2XX7LuL9fVzKzInqvRhTYjjfp6lBWMD_wSwVvqt0FsqDgao2c7dpi_Itcpiz2Bu9gaAzSc1xHI3ILw"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Câble Cuivre 2.5mm</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Réf: CAB-CU-25</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-block bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold mb-1">Quantité critique</span>
+<p class="text-error font-stats-numeric text-xl">4 <span class="text-sm font-label-md uppercase">rouleaux</span></p>
+</div>
+</div>
+<!-- Critical Item 3 -->
+<div class="bg-white border-l-4 border-error p-stack-md rounded-lg shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Multiple boxes of LED industrial floodlights stacked on a pallet. The packaging is professional and minimalist, with bold typography. The lighting environment is a bright loading dock during the day, emphasizing efficiency and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVwkczBY22Ro4qQcQM6IMIRkrWCH_wgZ8wRZTDhzv2D3h5xqkGR6Glpw3a8q573iVAniBCVt-_vamfHCeceYNHPcQx3Po0hwANu4nFjrgBxOKUNAKXh0GxfQ-yfn3RioWU6rAbOp-iKxC-RXke_FDew6pPOsZqjHP1PrfEQ6BMJCSFvtYrYAjsZCAB3CkfREwFB6sGmDaWDKc55RBSgjeFMK_EoQyMpWlEjTKXpVaPl-8TcuPd-3w51xJI2UJqx0grv85actsaQQ"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Projecteur LED 50W</h4>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Réf: LED-FL-50W</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-block bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold mb-1">Quantité critique</span>
+<p class="text-error font-stats-numeric text-xl">1 <span class="text-sm font-label-md uppercase">pièce</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Stock History / Recent Activity -->
+<section class="lg:col-span-1">
+<h3 class="font-headline-md text-headline-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">history</span> Activité Récente
+                </h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-sm h-full max-h-[400px] overflow-y-auto custom-scrollbar">
+<div class="relative space-y-stack-md pl-4 border-l border-outline-variant">
+<!-- History Entry 1 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Stock In: Écrous M8</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">+500 unités • Entrepôt A</span>
+<span class="text-outline text-[10px] mt-1 italic">Aujourd'hui, 09:45</span>
+</div>
+</div>
+<!-- History Entry 2 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Stock Out: Vernis Isolant</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">-12 bidons • Commande #882</span>
+<span class="text-outline text-[10px] mt-1 italic">Aujourd'hui, 08:20</span>
+</div>
+</div>
+<!-- History Entry 3 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Stock Out: Gants de Protection</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">-24 paires • Maintenance</span>
+<span class="text-outline text-[10px] mt-1 italic">Hier, 17:05</span>
+</div>
+</div>
+<!-- History Entry 4 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Stock In: Disjoncteurs 16A</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">+50 unités • Commande Fournisseur</span>
+<span class="text-outline text-[10px] mt-1 italic">Hier, 14:30</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-[64px] bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none md:hidden">
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">inventory</span>
+<span class="font-label-md text-label-md">Catalog</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-md text-label-md">Move</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">History</span>
+</div>
+</nav>
+<!-- FAB for Quick Stock Addition (Mobile Context) -->
+<button class="md:hidden fixed bottom-20 right-4 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+<script>
+        // Micro-interactions and data simulations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.group');
+            cards.forEach(card => {
+                card.addEventListener('mousedown', () => {
+                    card.style.transform = 'scale(0.98)';
+                });
+                card.addEventListener('mouseup', () => {
+                    card.style.transform = 'scale(1)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body></html>

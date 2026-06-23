@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMe - Inscription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#004395",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-secondary": "#ffffff",
+                    "outline": "#75777d",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#001a42",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-tint": "#545f73",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-primary": "#bcc7de",
+                    "secondary": "#0058be",
+                    "outline-variant": "#c5c6cd",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#bcc7de",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#45474c",
+                    "primary-container": "#1e293b",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-primary-fixed": "#111c2d",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary-container": "#8590a6",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-container": "#2170e4",
+                    "on-surface": "#191c1e",
+                    "tertiary-container": "#1a2a3e",
+                    "primary": "#091426",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-container": "#8191a9",
+                    "on-primary-fixed-variant": "#3c475a",
+                    "tertiary": "#041528",
+                    "primary-fixed": "#d8e3fb",
+                    "on-background": "#191c1e",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "touch-target": "48px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "stats-numeric": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "stats-numeric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for better visual integration */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .transition-all-custom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center">
+<!-- Hero/Brand Header Section -->
+<header class="w-full h-48 md:h-64 relative flex flex-col items-center justify-center overflow-hidden">
+
+<div class="z-10 flex flex-col items-center gap-2">
+<div class="bg-primary text-on-primary w-16 h-16 md:w-20 md:h-20 rounded-xl flex items-center justify-center shadow-lg transform transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-[40px] md:text-[48px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">StockMe</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[280px] text-center">Système de gestion d'inventaire haute performance</p>
+</div>
+</header>
+<!-- Main Registration Container -->
+<main class="w-full max-w-lg px-margin-mobile md:px-margin-desktop -mt-8 pb-stack-lg z-20">
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-stack-lg md:p-10 transition-all-custom">
+<div class="mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Créer un compte</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Rejoignez StockMe pour optimiser votre logistique.</p>
+</div>
+<!-- Form Wrapper -->
+<form class="space-y-stack-md" id="signup-form">
+<!-- Section 1: User Info -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-body-lg">person</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Informations personnelles</h3>
+</div>
+<div class="group">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 ml-1" for="fullname">Nom complet</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="w-full h-touch-target pl-12 pr-4 bg-surface border border-outline-variant rounded-lg font-body-lg text-body-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all-custom outline-none" id="fullname" placeholder="Jean Dupont" required="" type="text"/>
+</div>
+</div>
+<div class="group">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 ml-1" for="email">Adresse e-mail</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="w-full h-touch-target pl-12 pr-4 bg-surface border border-outline-variant rounded-lg font-body-lg text-body-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all-custom outline-none" id="email" placeholder="jean.dupont@entreprise.fr" required="" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="group">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 ml-1" for="password">Mot de passe</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full h-touch-target pl-12 pr-12 bg-surface border border-outline-variant rounded-lg font-body-lg text-body-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all-custom outline-none" id="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors p-1" onclick="togglePassword('password', this)" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="group">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 ml-1" for="confirm_password">Confirmation</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock_reset</span>
+<input class="w-full h-touch-target pl-12 pr-12 bg-surface border border-outline-variant rounded-lg font-body-lg text-body-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all-custom outline-none" id="confirm_password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors p-1" onclick="togglePassword('confirm_password', this)" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant my-stack-lg"/>
+<!-- Section 2: Company Info -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-body-lg">business</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Informations d'entreprise</h3>
+</div>
+<div class="group">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 ml-1" for="company">Nom de l'entreprise / boutique</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">store</span>
+<input class="w-full h-touch-target pl-12 pr-4 bg-surface border border-outline-variant rounded-lg font-body-lg text-body-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all-custom outline-none" id="company" placeholder="Entrepôt LogiPro S.A." required="" type="text"/>
+</div>
+</div>
+</div>
+<!-- Action Section -->
+<div class="pt-stack-lg flex flex-col gap-4">
+<div class="flex items-start gap-3 px-1">
+<input class="mt-1 w-5 h-5 text-secondary border-outline-variant rounded focus:ring-secondary" id="terms" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="terms">
+                            J'accepte les <a class="text-secondary font-semibold hover:underline" href="#">conditions d'utilisation</a> et la <a class="text-secondary font-semibold hover:underline" href="#">politique de confidentialité</a>.
+                        </label>
+</div>
+<button class="w-full h-touch-target bg-primary text-on-primary font-headline-md text-headline-md rounded-lg shadow-md hover:bg-on-primary-fixed hover:scale-[1.01] active:scale-[0.98] transition-all-custom flex items-center justify-center gap-2" type="submit">
+<span>S'inscrire</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-8 pt-8 border-t border-outline-variant text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Déjà un compte ? 
+                    <a class="text-secondary font-bold hover:underline ml-1" href="#">Se connecter</a>
+</p>
+</div>
+</div>
+<!-- Trust Badges / Quick Info -->
+<div class="mt-stack-lg grid grid-cols-2 gap-4">
+<div class="flex flex-col items-center p-4 bg-surface-container rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-2">security</span>
+<span class="font-label-md text-label-md text-primary">Sécurisé</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant leading-tight">Chiffrement AES-256</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-2">cloud_done</span>
+<span class="font-label-md text-label-md text-primary">Cloud Sync</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant leading-tight">Accès en temps réel</span>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-stack-lg">
+<p class="font-label-md text-label-md text-on-surface-variant/60">© 2024 StockMe Logistique SAS. Tous droits réservés.</p>
+</footer>
+<script>
+        function togglePassword(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.innerText = "visibility_off";
+            } else {
+                input.type = "password";
+                icon.innerText = "visibility";
+            }
+        }
+
+        // Form submission animation mock
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-spin material-symbols-outlined">progress_activity</span> <span>Chargement...</span>`;
+            
+            setTimeout(() => {
+                btn.classList.replace('bg-primary', 'bg-green-600');
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> <span>Succès !</span>`;
+                setTimeout(() => {
+                    // Reset or Redirect simulation
+                    btn.disabled = false;
+                    btn.classList.replace('bg-green-600', 'bg-primary');
+                    btn.innerHTML = originalContent;
+                    alert("Compte créé avec succès ! Bienvenue sur StockMe.");
+                }, 1500);
+            }, 2000);
+        });
+
+        // Atmospheric visual effect on input focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

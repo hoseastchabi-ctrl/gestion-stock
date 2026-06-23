@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profil Utilisateur - StockMe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#041528",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-bright": "#f7f9fb",
+                        "surface": "#f7f9fb",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#bcc7de",
+                        "outline": "#75777d",
+                        "primary-fixed": "#d8e3fb",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#8191a9",
+                        "on-primary-container": "#8590a6",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#fefcff",
+                        "secondary-container": "#2170e4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "primary-container": "#1e293b",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-surface-variant": "#45474c",
+                        "on-secondary-fixed": "#001a42",
+                        "primary": "#091426",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-background": "#191c1e",
+                        "tertiary-container": "#1a2a3e",
+                        "background": "#f7f9fb",
+                        "secondary": "#0058be",
+                        "surface-tint": "#545f73",
+                        "outline-variant": "#c5c6cd",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#111c2d",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#bcc7de",
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "touch-target": "48px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "stats-numeric": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "stats-numeric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24 md:pb-0 md:pl-64">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-touch-target bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary font-bold">StockMe</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center cursor-pointer active:opacity-80">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close-up professional portrait of a warehouse manager in a bright office environment, high resolution corporate photography with soft bokeh and neutral professional tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwrTFOAQfIEJz2derYwBQgDHbeRJeN5jkTfFR4U7V0o2tfDN2TZuNoozpgVC4VKV3hdxvJ9-rd2lvgRTAuwCrgpBtelrM80KXJSjFEDzpAis_zS7_QZn2fRg3pzqZgimYSqUz-K63S4nKAmtQa-RzkghW7fXcXHJ_Hpl9WLXcU1ZaJW-ph1au-lbkZxQ-jidDQ3-KQ6wBpE-NuQKrdzyeWiunO4EEQWJ0-8_Nd7GkPlZaL_Iwh_959CUMAaeBfZRfshO6ZMZ7xfw"/>
+</div>
+</header>
+<!-- NavigationDrawer (Web Only) -->
+<aside class="hidden md:flex flex-col h-full py-stack-lg w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant shadow-md">
+<div class="px-6 mb-8 mt-12">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A focused headshot of a middle-aged male administrator wearing a clean navy polo shirt, set against a bright modern warehouse office backdrop, high-end commercial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtz-4XXabWwqMfm42i2xU2L_KCsv-boEi64n_g1ZpJpFohMdDCRaLLyLfcdB3D5F2hS6I0hmLtuMRJrdg-1ako-9jGaXHzpA1EW0mmS8hDl5w44_QXiWSTwUwGNd0boSEpiP8uA318RYRDn6XrlVYnVMtXHX42Nn7sByNRSbuD_yRn1KlZW9mX4fdvNLSQFJIcY-QFqu34P1-gKgQ2TqY8bA_vuaYTjceNRIggJcp6Wlx74XdCe9qgmO9gPEi-y-FSj5kInMP3jg"/>
+</div>
+<div>
+<p class="font-bold text-primary">Jean Dupont</p>
+<p class="text-xs text-on-surface-variant">StockMe PWA</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-lg text-body-lg">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-body-lg text-body-lg">Catalog</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-body-lg text-body-lg">Stock Movement</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-lg text-body-lg">History</span>
+</div>
+</nav>
+<div class="px-4 mt-auto">
+<div class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-body-lg text-body-lg">Profile</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-mobile md:px-margin-desktop profile-container">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center py-8">
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface-container-lowest shadow-md overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a French warehouse administrator named Jean Dupont, friendly expression, wearing professional attire, bright and airy lighting, corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfDYBQ7Eqeqs_9-iaZMPx2TvejDKGIZL_EdO-at1I2rc-h5tSf42sjze3ycdv_gx2qIM5PjC3dyDuaRGlwXX5hXJnUjlhckGE8VBmvPKwr4jj5P2zzV6CK00WmYeWj-Owix3c_azBkkXMtai1SfqK5sY6Bmas3mgwkg_zVgTZYKBJzB6mqNv1Onory6aKczRASmOgwMLL5bL4eKxhgVsgQIgRn2lTRvr-CxZbVYbjMqTPnlGWdoKwLxFP7y_TTH2pB_MWsZQg2EA"/>
+</div>
+<button class="absolute bottom-1 right-1 bg-secondary text-on-secondary p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="mt-6 text-center">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Jean Dupont</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Administrateur Entrepôt</p>
+<span class="inline-flex items-center mt-3 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-xs font-bold rounded-full uppercase tracking-wider">
+                    Accès Total
+                </span>
+</div>
+</section>
+<!-- Bento-style Profile Sections -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg mb-8">
+<!-- Compte Section -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="account_circle">account_circle</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Compte</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Email</label>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-transparent focus-within:border-secondary transition-all">
+<p class="font-body-lg text-body-lg">jean.dupont@stockme.io</p>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="verified">verified</span>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Mot de passe</label>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<p class="font-body-lg text-body-lg">••••••••••••</p>
+<button class="text-secondary text-sm font-bold hover:underline">Changer</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Entreprise Section -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="business">business</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Entreprise</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Nom de l'entreprise</label>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<p class="font-body-lg text-body-lg">Logistique Solutions FR</p>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Adresse</label>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<p class="font-body-lg text-body-lg text-balance">12 Rue de l'Industrie, 75015 Paris, France</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col gap-4 mb-12">
+<button class="w-full bg-secondary text-on-secondary h-touch-target rounded-xl font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-[0.99] transition-all">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                Modifier le profil
+            </button>
+<button class="w-full border border-error text-error h-touch-target rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-error-container hover:text-on-error-container transition-colors active:scale-[0.99]">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Se déconnecter
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-[64px] bg-surface border-t border-outline-variant shadow-lg md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-label-md text-label-md">Catalog</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Move</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.opacity = '0.7';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.opacity = '1';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.opacity = '1';
+            });
+        });
+
+        // Mock Navigation active state handling
+        const currentPath = 'Profile'; // Hardcoded for this page context
+        document.querySelectorAll('nav a, aside nav div').forEach(navItem => {
+            if (navItem.textContent.trim().includes(currentPath)) {
+                // Style already applied via static classes to ensure truth to JSON
+            }
+        });
+    </script>
+</body></html>

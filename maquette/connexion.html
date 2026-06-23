@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMe - Connexion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "outline": "#75777d",
+                    "surface-bright": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed": "#d3e4fe",
+                    "inverse-surface": "#2d3133",
+                    "surface": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "primary": "#091426",
+                    "outline-variant": "#c5c6cd",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed-variant": "#3c475a",
+                    "surface-container-low": "#f2f4f6",
+                    "tertiary-container": "#1a2a3e",
+                    "secondary": "#0058be",
+                    "on-background": "#191c1e",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-container": "#2170e4",
+                    "on-surface-variant": "#45474c",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-primary-fixed": "#111c2d",
+                    "primary-fixed": "#d8e3fb",
+                    "on-secondary-fixed": "#001a42",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#8191a9",
+                    "surface-container-highest": "#e0e3e5",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#bcc7de",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-surface": "#191c1e",
+                    "on-secondary-container": "#fefcff",
+                    "surface-tint": "#545f73",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#bcc7de",
+                    "primary-container": "#1e293b",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-primary-container": "#8590a6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "tertiary": "#041528"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "stack-md": "16px",
+                    "gutter": "16px",
+                    "margin-desktop": "32px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "touch-target": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "stats-numeric": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "stats-numeric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        input:focus {
+            outline: none !important;
+            border-color: #0058be !important;
+            ring-color: #0058be !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Subtle atmospheric background for professional edge -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-40">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary-fixed blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[5%] w-[50%] h-[50%] rounded-full bg-secondary-fixed-dim blur-[100px]"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex-1 flex items-center justify-center p-margin-mobile md:p-margin-desktop h-full">
+<div class="w-full max-w-md space-y-stack-lg">
+<!-- Identity Header (Brand Anchor Logic) -->
+<div class="flex flex-col items-center text-center space-y-stack-sm mb-stack-lg">
+<div class="flex items-center gap-stack-sm mb-stack-sm">
+<span class="material-symbols-outlined text-primary text-[40px]" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">StockMe</h1>
+</div>
+<p class="font-body-lg text-on-surface-variant max-w-[280px]">Gestion d'inventaire professionnelle pour les experts en logistique.</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg md:p-margin-desktop rounded-xl login-card-shadow">
+<form class="space-y-stack-lg" id="login-form">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">ADRESSE EMAIL</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]" data-icon="mail">mail</span>
+<input class="w-full h-touch-target pl-10 pr-4 bg-surface border border-outline-variant rounded text-body-lg placeholder:text-outline focus:border-secondary transition-all" id="email" name="email" placeholder="nom@entreprise.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">MOT DE PASSE</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]" data-icon="lock">lock</span>
+<input class="w-full h-touch-target pl-10 pr-12 bg-surface border border-outline-variant rounded text-body-lg placeholder:text-outline focus:border-secondary transition-all" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 text-on-surface-variant hover:text-primary transition-colors h-touch-target flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end">
+<a class="font-label-md text-label-md text-secondary hover:text-on-secondary-fixed-variant transition-colors underline-offset-4 hover:underline" href="#">
+                            Mot de passe oublié ?
+                        </a>
+</div>
+<!-- Action Button -->
+<button class="w-full h-touch-target bg-primary text-on-primary font-headline-md text-headline-md rounded-lg hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
+<span>Se connecter</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Footer Meta -->
+<div class="text-center pt-stack-md">
+<p class="font-body-sm text-body-sm text-outline">
+                    Propulsé par <span class="font-bold text-on-surface-variant">StockMe Enterprise</span> v1.0.4
+                </p>
+<div class="flex justify-center gap-gutter mt-stack-sm">
+<a class="font-label-md text-label-md text-outline hover:text-on-surface transition-colors" href="#">Assistance</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-md text-label-md text-outline hover:text-on-surface transition-colors" href="#">Confidentialité</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Feedback Overlay (Hidden by default) -->
+<div class="fixed inset-0 z-[100] bg-surface/80 backdrop-blur-sm hidden flex items-center justify-center" id="loading-overlay">
+<div class="flex flex-col items-center space-y-stack-md">
+<div class="relative w-12 h-12">
+<div class="absolute inset-0 border-4 border-secondary-fixed rounded-full opacity-20"></div>
+<div class="absolute inset-0 border-4 border-t-secondary border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+</div>
+<p class="font-headline-md text-headline-md text-primary animate-pulse">Authentification...</p>
+</div>
+</div>
+<script>
+        // Simple form handling and micro-interaction
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.remove('hidden');
+            
+            // Artificial delay to simulate backend check
+            setTimeout(() => {
+                // In a real app, this would redirect
+                window.location.reload(); 
+            }, 1500);
+        });
+
+        // Password visibility toggle logic
+        const toggleBtn = document.querySelector('button[type="button"]');
+        const passInput = document.getElementById('password');
+        const passIcon = toggleBtn.querySelector('span');
+
+        toggleBtn.addEventListener('click', () => {
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                passIcon.textContent = 'visibility_off';
+            } else {
+                passInput.type = 'password';
+                passIcon.textContent = 'visibility';
+            }
+        });
+    </script>
+</body></html>

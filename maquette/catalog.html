@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMe - Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "outline": "#75777d",
+                        "surface-bright": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-fixed": "#d3e4fe",
+                        "inverse-surface": "#2d3133",
+                        "surface": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "primary": "#091426",
+                        "outline-variant": "#c5c6cd",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-container": "#1a2a3e",
+                        "secondary": "#0058be",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-container": "#2170e4",
+                        "on-surface-variant": "#45474c",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#111c2d",
+                        "primary-fixed": "#d8e3fb",
+                        "on-secondary-fixed": "#001a42",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#8191a9",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#bcc7de",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#fefcff",
+                        "surface-tint": "#545f73",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#bcc7de",
+                        "primary-container": "#1e293b",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-primary-container": "#8590a6",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "tertiary": "#041528"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "touch-target": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "stats-numeric": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "stats-numeric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-touch-target bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-primary dark:text-primary-fixed">StockMe</h1>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Dashboard</a>
+<a class="text-secondary dark:text-secondary-fixed font-bold font-label-md px-3 py-2 rounded-lg" href="#">Catalog</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Move</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">History</a>
+</nav>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden cursor-pointer active:opacity-80">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a warehouse manager in a clean corporate setting, high-key studio lighting with soft shadows, minimal blue and white color palette, focused and reliable expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt94DKwmuHLBn0EEjukVEwli9VsqHXQ0QdYkTIUUqYbzgbtCxOjkTEuQfaCEeiMrvRNrmR5Mqlxh7WcL4NZg0iTKq_y9tfs-sb-EQo9WAu23pP2bp2PYiII50UHepTgsrTdtLVjE20VXkoJz8GbchtIRPf6alWicYr5xhhNPt24vsqf2W2SLxrqX2Unfv1hAz1_ngrYWug6UCZb2TZ5v7sqo08AmHz1eFqsqj9k5OFm1t6k2nnRfv3AHCZnZO9BceUnYPKiJGXOg"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-full py-stack-lg w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-md dark:shadow-none z-40 mt-touch-target">
+<div class="px-6 mb-8">
+<p class="text-on-surface-variant font-label-md opacity-70">ADMIN CONSOLE</p>
+<h2 class="font-headline-md text-primary mt-1">Warehouse Admin</h2>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-lg">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full mx-2 px-4 py-3 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-body-lg font-bold">Catalog</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-body-lg">Stock Movement</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant mx-2 px-4 py-3 cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-lg">History</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 md:pb-8 md:pl-72 px-margin-mobile md:px-margin-desktop min-h-screen max-w-[1440px] mx-auto">
+<!-- Page Header & Search -->
+<section class="mb-stack-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Inventory Catalog</h2>
+<p class="text-on-surface-variant font-body-sm">Managing 4,281 total stock units across 24 categories.</p>
+</div>
+<div class="relative w-full md:w-96 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-secondary transition-colors" data-icon="search">search</span>
+<input class="w-full h-touch-target pl-12 pr-4 bg-surface-container border-none rounded-xl focus:ring-2 focus:ring-secondary transition-all text-body-lg placeholder:text-outline-variant" placeholder="Search SKU or Name..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Catalog Grid -->
+<section class="bento-grid">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial-grade ergonomic power drill, high-contrast product photography on a clean white background, minimalist technical aesthetic, blue metallic accents, sharp focus on engineering details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvJg4FyOn4z_7e95aCE_R2-J8UYxJZaqALfx0XkQfoGXH2t1DtfybbxBaOORRL5RgF5FoIncDc7SNIAJyD1tdLlVLWUHPnKFSmP36VSBuv2ue3ET14NF2eFlIgOF5X1cIKMURKYZY-imxX_tDolCHzJssn2WPTcWptWqkDwXYVpVC2EsaFajtFwUKbKw9kCIKCrWMPKwQOscamlfj6k0w7lwp_67b9GJvVt9wEHLG1OA_Oy5tPu3Xem5S3s1_2HHW4tGCfCgAUw"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">TOOLS</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">Pro-Series Power Drill</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$149.00</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: DR-4492-X</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-green-700 font-bold text-label-md">IN STOCK (42)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Heavy-duty warehouse safety goggles with anti-fog coating, professional equipment photography, bright industrial lighting, vibrant yellow frame accents, ultra-clear lens detail, corporate safety equipment catalog style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqGYVG-Dn1s5sWJ7QDvEKZ22EdUhni3f2JnaR-sA9h5fHzyOh1nWf1hPBbtctk79fphT4iylLdPLAlyC1Io28raYF0U-NjnBS4DpKk1bhmHA7seGASFV_Z_Ioc2PnhPfqHZf6hR2QABtPJWLqhds7X4yCXYFDpmR4ArMAqVsadOA2v7qIX_SHrPNx_QO79W8yk-VTbJmHilFiguCzF9TY-uUK1QxYe6KOEgRkKY6rw_g-FYZlUbuzs1fjtnsWjTTxHqWfVuQoAOQ"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">SAFETY</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">Titan Guard Goggles</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$24.50</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: GG-0012-Y</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
+<div class="w-2 h-2 rounded-full bg-orange-500"></div>
+<span class="text-orange-700 font-bold text-label-md">LOW STOCK (5)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Professional grade digital calipers on a dark slate workbench, technical industrial photography, precision measurement tool, stainless steel texture, soft side lighting highlighting increments and digital display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAj1vjrji6B3dX5JiDkAvcA5Gwg-0s7akSWeMkMD-aFQd70yIi_ri7d1v5nlYIiJklXrulOyXs2HVoOWuSRHlOHNW5qjamjoIH83gipxuSyE2j-dLvg0EGPi1dN3O_mc4fNUt1oOqYalQ9Y1I9MUD3L9TBHaNz8zDsAWk6FSYBETPN6U1PH35zKdJNFf7oyv5-cFV9Sn2ak8AYt45C6aJ9u4l0wJsEu0CDPh0FyTTA-c709m3eSlQiz1CA4opCZNVE6tSoVoMeQw"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">MEASURING</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">Digital Precision Caliper</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$89.00</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: CL-8821-D</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-green-700 font-bold text-label-md">IN STOCK (118)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Rugged industrial logistics tablet with protective case, sitting on a warehouse shelf, futuristic inventory management interface on screen, low angle perspective, bokeh warehouse background with blue and orange ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB33b8W_EMMtW2AtUCVScU26Vj0hCt-sA3owXcf62oJm6rj8YCXQ1dDpGZpa-gbv4gTeJW5Lcsr_D8EWnEEmGJBHzNoZ6ntp5iogNRa2gWWtc7nsaL0LieORYmSK5wp5PjHl5CnYgyqxdnHorzfPLnTu6fFx6NuY98qm2KtGo-1kIM69rMY34SfvAbIo-40ldBJ-fVHYEv3vsuPD7qD51c7S0PPisNT6AGokqJmAqkvxBehoxa_TrSe6jw_kXJz5WwDyLWD6TB0A"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">ELECTRONICS</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">Scanner Tablet Gen 4</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$599.00</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: TB-1044-L</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-green-700 font-bold text-label-md">IN STOCK (12)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 (Out of Stock Example) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col opacity-80 grayscale-[0.3]">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Professional grade safety harness for high-altitude work, heavy nylon webbing with steel buckles, industrial equipment photography, neutral studio background, strong directional lighting emphasizing texture and durability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXGBEGouK9zEsVWRM_CYzMftHkGbBBpz9iWwAIgJtSsJTSX8GnMnMq2ax6q2FkJfQeVEQiI2hvEkAREEBDSIXF-jpCe8AXICPq13tm0yHSTN0m5f4qhNJLFgUZwXeCxUqKs-BxGq6_mpm0trexPBcTRJI8eg2MskLhwzwR9w_a3xEoR65mmheQnC71INY-XZ2V1cC1ROOGWEMqBNthZPVC5wXAzt3KPQMPUVD4PfiRf3ErJIslEyTkOIqDkpndyEzK5thCAqpbBQ"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">SAFETY</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">Apex Harness X3</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$112.00</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: HR-7721-S</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-error-container px-3 py-1 rounded-full border border-error/20">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-on-error-container font-bold text-label-md">OUT OF STOCK (0)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Stainless steel hardware bolts and nuts organized in a professional grid, clean technical photography, bright industrial workshop lighting, macro detail of threading and metallic shine, minimalist engineering aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBNGUQWF6R1SYgPC2j0QBXK1TEc42euGiKhNzINbVgwG2X3DDmxHK04b-mDXjiKbK1f9NMc-94Y6WB9YB2DqByP8u9cG0LTYbxttxOTOHogkkaGKtyE0hX4OxLI8nHmec_Ax947CxmUEtTFDzB3Jz442n74w6w6JPpHYecFW4uTyLz0LjKfciUC9LB_UefrjIPZHdejDSzQKXulq3Tm85Sd6sloWukxabKGbukFs-mInMYA3cSEABoVc5alg448ecvyC8sz4VDVg"/>
+<div class="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-secondary font-bold text-label-md">HARDWARE</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-primary truncate pr-2">M8 Hex Bolt (Bulk)</h3>
+<span class="text-primary font-stats-numeric text-body-lg">$0.15/ea</span>
+</div>
+<p class="text-outline font-label-md tracking-wider mb-stack-md uppercase">SKU: HB-M8-500</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-green-700 font-bold text-label-md">IN STOCK (1,240)</span>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 md:bottom-8 z-50 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform hover:bg-secondary-container">
+<span class="material-symbols-outlined text-[32px]" data-icon="add">add</span>
+<span class="sr-only">Ajouter un produit</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-[64px] bg-surface dark:bg-inverse-surface md:hidden border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-label-md text-label-md font-bold">Catalog</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Move</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for search and filter feedback
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.bento-grid > div');
+            
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.opacity = '0.2';
+                    setTimeout(() => {
+                        if (card.style.opacity === '0.2') card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+
+        // Toggle FAB action ripple
+        const fab = document.querySelector('button.fixed.right-6');
+        fab.addEventListener('click', () => {
+            console.log('Open Add Product Dialog');
+            // Mock interaction feedback
+            fab.classList.add('bg-primary');
+            setTimeout(() => fab.classList.remove('bg-primary'), 200);
+        });
+    </script>
+</body></html>

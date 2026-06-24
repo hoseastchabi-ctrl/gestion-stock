@@ -40,10 +40,12 @@ export async function forgotPassword(email) {
   return data
 }
 
-export async function updateProfile(payload) {
-  const { data } = await api.put('/user/profile', payload)
-  if (payload.name) {
-    localStorage.setItem('stockme_user_name', payload.name)
+export async function updateProfile(formData) {
+  const { data } = await api.post('/user/profile', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+  if (formData.get('name')) {
+    localStorage.setItem('stockme_user_name', formData.get('name'))
   }
   return data
 }

@@ -151,14 +151,24 @@ function formatFCFA(value) {
   return `${Number(value).toLocaleString('fr-FR')} FCFA`
 }
 
+const BACKEND_URL = 'http://localhost:8000'
+
+function resolveImageUrl(url) {
+  if (!url) return null
+  if (url.startsWith('http')) return url
+  const path = url.startsWith('/') ? url : `/${url}`
+  return `${BACKEND_URL}${path}`
+}
+
 function ProductCard({ product, menuOpen, onToggleMenu, onEdit, onDelete }) {
   const status = getStockStatus(product.quantity)
+  const imageUrl = resolveImageUrl(product.image_url)
 
   return (
     <div className={`bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col relative ${status.dimmed ? 'opacity-80' : ''}`}>
       <div className="h-32 overflow-hidden relative bg-surface-container flex items-center justify-center">
-        {product.image_url ? (
-          <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+        {imageUrl ? (
+          <img src={imageUrl} alt={product.name} className="w-full h-full object-cover" />
         ) : (
           <Package className="text-outline" size={36} />
         )}

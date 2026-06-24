@@ -2,7 +2,82 @@ import { useEffect, useState } from 'react'
 import { X, Package, Tag, Hash, Banknote, Boxes, Loader2, Image as ImageIcon, Upload } from 'lucide-react'
 import { getCategories } from '../api/category'
 import { createProduct, updateProduct } from '../api/catalog'
+const BACKEND_URL = 'http://localhost:8000'
 
+function resolveImageUrl(url) {
+  if (!url) return null
+  if (url.startsWith('http')) return url
+  const path = url.startsWith('/') ? url : `/${url}`
+  return `${BACKEND_URL}${path}`
+}
+
+function ProductCard({ product, menuOpen, onToggleMenu, onEdit, onDelete }) {
+  const status = getStockStatus(product.quantity)
+  const imageUrl = resolveImageUrl(product.image_url)
+
+  return (
+    <div className={`bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col relative ${status.dimmed ? 'opacity-80' : ''}`}>
+      <div className="h-32 overflow-hidden relative bg-surface-container flex items-center justify-center">
+        {imageUrl ? (
+          <img src={imageUrl} alt={product.name} className="w-full h-full object-cover" />
+        ) : (
+          <Package className="text-outline" size={36} />
+        )}
+        {product.category?.name && (
+          <div className="absolute top-3 right-3 bg-secondary/10 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+            <span className="text-secondary font-bold text-[10px] uppercase">{product.category.name}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4 flex-grow flex flex-col justify-between">
+        <div>
+          <div className="flex justify-between items-start mb-1">
+            <h3 className="font-semibold text-primary truncate pr-2">{product.name}</h3>
+            <span className="text-primary font-bold text-sm whitespace-nowrap">
+              {formatFCFA(product.price)}
+            </span>
+          </div>
+          <p className="text-outline text-xs tracking-wider uppercase mb-3">Réf: {product.reference}</p>
+        </div>
+
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-outline-variant/30">
+          <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${status.bg} ${status.border}`}>
+            <span className={`w-2 h-2 rounded-full ${status.dot}`} />
+            <span className={`font-bold text-[10px] ${status.text}`}>
+              {status.label} ({product.quantity})
+            </span>
+          </div>
+
+          <div className="relative">
+            <button
+              onClick={onToggleMenu}
+              className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors"
+            >
+              <MoreVertical className="text-outline" size={18} />
+            </button>
+            {menuOpen && (
+              <div className="absolute right-0 bottom-10 bg-white border border-outline-variant rounded-lg shadow-lg overflow-hidden z-10 w-36">
+                <button
+                  onClick={onEdit}
+                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-on-surface hover:bg-surface-container transition-colors"
+                >
+                  <Pencil size={16} /> Modifier
+                </button>
+                <button
+                  onClick={onDelete}
+                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-error hover:bg-error-container transition-colors"
+                >
+                  <Trash2 size={16} /> Supprimer
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 export default function ProductFormModal({ product, onClose, onSaved }) {
   const isEdit = Boolean(product)
 

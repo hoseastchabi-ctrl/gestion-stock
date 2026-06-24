@@ -40,8 +40,12 @@ export default function Profile() {
       <section className="flex flex-col items-center py-6">
         <div className="relative">
           <div className="w-32 h-32 rounded-full border-4 border-white shadow-md overflow-hidden bg-surface-container flex items-center justify-center">
-            <UserCircle2 className="text-outline" size={64} />
-          </div>
+  {user?.profile_photo_url ? (
+    <img src={user.profile_photo_url} alt={user.name} className="w-full h-full object-cover" />
+  ) : (
+    <UserCircle2 className="text-outline" size={64} />
+  )}
+</div>
           <Link
             to="/profile/edit"
             className="absolute bottom-1 right-1 bg-secondary text-white p-2 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform"

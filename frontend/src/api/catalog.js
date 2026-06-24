@@ -6,17 +6,13 @@ export async function getProducts(params = {}) {
 }
 
 export async function createProduct(formData) {
-  const { data } = await api.post('/products', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
+  const { data } = await api.post('/products', formData)
   return data
 }
 
 export async function updateProduct(id, formData) {
   formData.append('_method', 'PUT')
-  const { data } = await api.post(`/products/${id}`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
+  const { data } = await api.post(`/products/${id}`, formData)
   return data
 }
 

@@ -42,9 +42,21 @@ public function updateProfile(Request $request)
         'name' => 'sometimes|string|max:255',
         'email' => 'sometimes|email|max:255',
         'company' => 'sometimes|nullable|string|max:255',
+        'profile_photo' => 'nullable|image|max:5120',
     ]);
 
+    if ($request->hasFile('profile_photo')) {
+        if ($user->profile_photo) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo);
+        }
+        $validated['profile_photo'] = $request->file('profile_photo')->store('avatars', 'public');
+    }
+
     $user->update($validated);
+
+    $user->profile_photo_url = $user->profile_photo
+        ? \Illuminate\Support\Facades\Storage::url($user->profile_photo)
+        : null;
 
     return response()->json($user);
 }

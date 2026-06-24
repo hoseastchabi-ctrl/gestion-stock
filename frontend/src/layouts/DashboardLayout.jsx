@@ -4,6 +4,7 @@ import {
   Archive, Repeat, UserCircle2, Package, User, Plus, LayoutDashboard, History,
 } from 'lucide-react'
 import WelcomeModal from '../components/WelcomeModal'
+import { getUser } from '../api/auth'
 
 const navItems = [
   { to: '/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
@@ -23,6 +24,7 @@ const mobileNavItems = [
 export default function DashboardLayout() {
   const [showWelcome, setShowWelcome] = useState(false)
   const [welcomeType, setWelcomeType] = useState('login')
+  const [photoUrl, setPhotoUrl] = useState(null)
   const userName = localStorage.getItem('stockme_user_name') || 'Gérant'
 
   useEffect(() => {
@@ -32,6 +34,10 @@ export default function DashboardLayout() {
       setShowWelcome(true)
       localStorage.removeItem('stockme_welcome_type')
     }
+
+    getUser()
+      .then((user) => setPhotoUrl(user.profile_photo_url ?? null))
+      .catch(() => setPhotoUrl(null))
   }, [])
 
   return (
@@ -62,8 +68,15 @@ export default function DashboardLayout() {
               </NavLink>
             ))}
           </div>
-          <Link to="/profile" className="w-8 h-8 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
-            <User size={18} />
+          <Link
+            to="/profile"
+            className="w-8 h-8 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors overflow-hidden"
+          >
+            {photoUrl ? (
+              <img src={photoUrl} alt="Profil" className="w-full h-full object-cover" />
+            ) : (
+              <User size={18} />
+            )}
           </Link>
         </div>
       </header>
